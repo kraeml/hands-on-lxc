@@ -1,0 +1,31 @@
+<domain type='lxc'>
+    <name>libvirt_container1</name>
+    <uuid>902b56ed-969c-458e-8b55-58daf5ae97b3</uuid>
+    <memory unit='KiB'>524288</memory>
+    <currentMemory unit='KiB'>524288</currentMemory>
+    <vcpu placement='static'>1</vcpu>
+    <os>
+        <type arch='x86_64'>exe</type>
+        <init>/sbin/init</init>
+    </os>
+    <features>
+        <capabilities policy='allow'></capabilities>
+    </features>
+    <clock offset='utc'/>
+    <on_poweroff>destroy</on_poweroff>
+    <on_reboot>restart</on_reboot>
+    <on_crash>destroy</on_crash>
+    <devices>
+        <emulator>/usr/lib/libvirt/libvirt_lxc</emulator>
+        <filesystem type='mount' accessmode='passthrough'>
+            <source dir='/root/container'/>
+            <target dir='/'/>
+        </filesystem>
+        <interface type='bridge'>
+            <mac address='00:17:4e:9f:36:f8'/>
+            <source bridge='lxcbr0'/>
+            <link state='up'/>
+        </interface>
+        <console type='pty' />
+    </devices>
+</domain>
